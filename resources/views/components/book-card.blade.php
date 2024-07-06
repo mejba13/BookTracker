@@ -1,13 +1,21 @@
-<li class="flex justify-between gap-x-6 py-5">
-    <div class="flex min-w-0 gap-x-4">
-        <img class="h-24 w-24 flex-none rounded-xl bg-gray-50" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-        <div class="min-w-0 flex-auto">
-            <p class="text-xl text-left font-semibold leading-6 text-gray-900">Leslie Alexander</p>
-            <p class="mt-1 truncate text-sm leading-5 text-gray-500">leslie.alexander@example.com</p>
+@props(['book'])
+
+
+    <div class="group relative">
+        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+            <img src="{!! Vite::asset('/resources/images/default-book-cover.jpg') !!}" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+        </div>
+        <div class="mt-4 flex justify-between">
+            <div>
+                <h3 class="text-sm text-gray-700">
+                    <a href="#">
+                        <span aria-hidden="true" class="absolute inset-0  text-3xl text-gray-500"></span>
+                        {{ $book->title }}
+                    </a>
+                </h3>
+                <p class="mt-1 text-sm text-gray-500">{{ $book->author }}</p>
+            </div>
+            <p class="text-sm font-medium text-gray-900">${{ $book->price }}</p>
         </div>
     </div>
-    <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-        <p class="text-sm leading-6 text-gray-900">Co-Founder / CEO</p>
-        <p class="mt-1 text-xs leading-5 text-gray-500">Last seen <time datetime="2023-01-23T13:23Z">3h ago</time></p>
-    </div>
-</li>
+
