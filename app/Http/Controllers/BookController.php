@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
+use App\Mail\BookAdded;
 use App\Models\Book;
+use Illuminate\Support\Facades\Mail;
 
 class BookController extends Controller
 {
@@ -24,15 +26,34 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('books.add-book');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBookRequest $request)
+    public function store()
     {
-        //
+         request()->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'price' =>  ['required', 'numeric'],
+            'book_cover_image' => 'required',
+            'published_date' => 'required',
+            'isbn' => 'required',
+        ]);
+
+         $book = Book::create([
+             'title' => request('title'),
+             'author' => request('author'),
+             'price' => request('price'),
+             'book_cover_image' => request('book_cover_image'),
+             'published_date' => request('published_date'),
+             'isbn' => request('isbn'),
+         ]);
+
+         return redirect('/books');
+
     }
 
     /**

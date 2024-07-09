@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ env('APP_NAME') }} -  {{ $pagetitle ?? 'All books' }} </title>
+    <title>BookTracker - BookTracker is a simple Laravel 11 application</title>
     <link rel="shortcut icon" href="{!! Vite::asset('/resources/images/books.png') !!}" type="image/x-icon">
     <meta name="description" content="BookTracker is a simple and efficient application to manage your personal library. Easily add, view, update, and delete books. Organize your collection by genres and keep track of your favorite reads.">
     @vite(['resources/css/app.css','resources/js/app.js'])

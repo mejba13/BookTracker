@@ -8,6 +8,9 @@ Route::get('/', function () {
 });
 
 Route::get('/books',[BookController::class,'index'])->name('books.index');
+Route::get('/books/add-book',[BookController::class,'create'])->name('books.add-book');
+Route::post('/books',[BookController::class,'store'])->name('books.add-book');
+
 
 Route::get('/about', function () {
     return view('pages.about');
