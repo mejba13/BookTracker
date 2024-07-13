@@ -39,7 +39,7 @@ class BookAdded extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.book_added',
+            view: 'mail.book-added',
         );
     }
 

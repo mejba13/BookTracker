@@ -48,12 +48,12 @@
 </head>
 <body>
 <div class="container">
-    <h2>{!! $book->title !!}</h2>
+    <h2></h2>
     <p>
         Congrats! Your job is now live on our website.
     </p>
     <p>
-        <a href="{{ url('/books'}}">View Your Job Listing</a>
+        <a href="">View Your Job Listing</a>
     </p>
     <div class="footer">
         <p>&copy; {{ date('Y') }} BookTracker. All rights reserved.</p>
