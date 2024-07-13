@@ -35,7 +35,20 @@
                 <a href="/contact" class="text-sm font-semibold leading-6 text-gray-900">Contact</a>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+                @auth
+                    <form action="/logout" method="post">
+                        @csrf
+                        <x-forms.button>Logout</x-forms.button>
+                    </form>
+                @endauth
+
+                @guest
+                    <div class="flex gap-3 justify-between">
+                        <a href="/login" class="rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Login</a>
+                        <a href="/register" class="rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Register</a>
+                    </div>
+                @endguest
+
             </div>
         </nav>
         <!-- Mobile menu, show/hide based on menu open state. -->

@@ -11,9 +11,9 @@
             <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                 <x-forms.input label="Title" type="text" name="title" placeholder="Book Title" />
                 <x-forms.input label="Author" type="text" name="author" placeholder="Author" />
-                <x-forms.input label="Price" type="text" name="price" placeholder="price" />
+                <x-forms.input label="Price" type="text" name="price" placeholder="Price" />
                 <x-forms.input label="Book Cover Image" type="text"  name="book_cover_image" placeholder="Book Cover Image" />
-                <x-forms.input label="Published Date" type="date" name="published_date" placeholder="published_date" />
+                <x-forms.input label="Published Date" type="date" name="published_date" placeholder="Published Date" />
                 <x-forms.input label="ISBN" name="isbn" type="text" placeholder="isbn number" />
             </div>
             <x-forms.button>Add Book</x-forms.button>

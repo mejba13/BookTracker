@@ -8,7 +8,7 @@
             <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contact Us</h2>
             <p class="mt-2 text-lg leading-8 text-gray-600">We're here to help!</p>
         </div>
-        <form action="#" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
+        <form action="/contact" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
             <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                 <div>
                     <label for="first-name" class="block text-sm font-semibold leading-6 text-gray-900">First name</label>
