@@ -50,10 +50,10 @@
 <div class="container">
     <h2></h2>
     <p>
-        Congrats! Your job is now live on our website.
+        Congrats! Your Book is now live on our website.
     </p>
     <p>
-        <a href="">View Your Job Listing</a>
+        <a href="">View Your Book Listing</a>
     </p>
     <div class="footer">
         <p>&copy; {{ date('Y') }} BookTracker. All rights reserved.</p>

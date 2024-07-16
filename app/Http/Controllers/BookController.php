@@ -52,9 +52,9 @@ class BookController extends Controller
              'isbn' => request('isbn'),
          ]);
 
-        Mail::to('mejba13@gmail.com')->send(
-            new bookAdded($book)
-        );
+//        Mail::to('mejba13@gmail.com')->send(
+//            new bookAdded($book)
+//        );
 
          return redirect('/books');
 

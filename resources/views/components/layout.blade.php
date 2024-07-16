@@ -36,10 +36,15 @@
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                 @auth
-                    <form action="/logout" method="post">
-                        @csrf
-                        <x-forms.button>Logout</x-forms.button>
-                    </form>
+                    <div class="flex gap-6 align-bottom">
+                        <div class="flex -space-x-1 overflow-hidden justify-center py-6">
+                            Hi {{ Auth::user()->first_name }} <img class=" ml-5 h-6 w-6 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                        </div>
+                        <form class="justify-center" action="/logout" method="post">
+                            @csrf
+                            <x-forms.button>Logout</x-forms.button>
+                        </form>
+                    </div>
                 @endauth
 
                 @guest
@@ -88,8 +93,8 @@
         {{ $slot }}
     </div>
 </div>
-  <footer class="relative isolate px-6 pt-0 lg:px-8 bottom-0 text-center text-gray-400 inset-y-40">
-      <p>&copy; 2024 BookTracker. All rights reserved.</p>
-  </footer>
+
+<x-footer/>
+
 </body>
 </html>
