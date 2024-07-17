@@ -29,10 +29,10 @@
                 </button>
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
-                <a href="/" class="text-sm font-semibold leading-6 text-gray-900">Home</a>
-                <a href="/books" class="text-sm font-semibold leading-6 text-gray-900">Books</a>
-                <a href="/about" class="text-sm font-semibold leading-6 text-gray-900">About</a>
-                <a href="/contact" class="text-sm font-semibold leading-6 text-gray-900">Contact</a>
+                <x-nav-link href="/" :active="request()->is('/')" id="home-id"> Home </x-nav-link>
+                <x-nav-link href="/books" :active="request()->is('books')" id="home-id"> Books </x-nav-link>
+                <x-nav-link href="/about" :active="request()->is('about')" id="home-id"> About </x-nav-link>
+                <x-nav-link href="/contact" :active="request()->is('contact')" id="home-id"> Contact </x-nav-link>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                 @auth
