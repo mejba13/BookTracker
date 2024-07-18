@@ -52,9 +52,9 @@ class BookController extends Controller
              'isbn' => request('isbn'),
          ]);
 
-//        Mail::to('mejba13@gmail.com')->send(
-//            new bookAdded($book)
-//        );
+        Mail::to($book->user)->queue(
+            new BookAdded($book)
+        );
 
          return redirect('/books');
 
@@ -63,9 +63,10 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Book $book)
+    public function show( Book $book)
     {
         //
+        return view('books.product-page',['book'=>$book]);
     }
 
     /**

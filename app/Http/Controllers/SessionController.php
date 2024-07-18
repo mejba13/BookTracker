@@ -19,9 +19,8 @@ class SessionController extends Controller
         ]);
 
         if(! Auth::attempt($attributes)){
-            throw ValidationException::withMessages([
-                'email' => __('auth.failed'),
-                'password' => __('auth.failed'),
+            throw \Illuminate\Validation\ValidationException::withMessages([
+                'email' => __('Sorry, there was an error while logging in.'),
             ]);
         }
 
