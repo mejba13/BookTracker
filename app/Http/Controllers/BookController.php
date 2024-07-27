@@ -6,6 +6,8 @@ use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Mail\BookAdded;
 use App\Models\Book;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Support\Facades\Mail;
 
 class BookController extends Controller
@@ -19,6 +21,10 @@ class BookController extends Controller
         return view('books.index', [
             'books' => $books,
         ]);
+    }
+
+    public function about() {
+        return view('pages.about');
     }
 
     /**
@@ -74,22 +80,44 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('books.edit-book', ['book'=>$book]);
     }
 
     /**
      * Update the specified resource in storage.
+     * @throws AuthorizationException
      */
-    public function update(UpdateBookRequest $request, Book $book)
+    public function update(Book $book)
     {
-        //
+        request()->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'price' =>  ['required', 'numeric'],
+            'book_cover_image' => 'required',
+            'published_date' => 'required',
+            'isbn' => 'required',
+        ]);
+
+        $book->update([
+            'title' => request('title'),
+            'author' => request('author'),
+            'price' => request('price'),
+            'book_cover_image' => request('book_cover_image'),
+            'published_date' => request('published_date'),
+            'isbn' => request('isbn'),
+        ]);
+
+        return redirect('/books/'.$book->id);
+
     }
 
     /**
      * Remove the specified resource from storage.
+     * @throws AuthorizationException
      */
     public function destroy(Book $book)
     {
-        //
+       $book->delete();
+       return redirect('/books');
     }
 }
