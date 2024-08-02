@@ -14,13 +14,12 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);
             $table->string('title');
             $table->string('author');
             $table->string('price');
             $table->string('book_cover_image')->nullable();
             $table->date('published_date');
-            $table->string('isbn')->unique();
+            $table->string('isbn');
             $table->timestamps();
         });
     }

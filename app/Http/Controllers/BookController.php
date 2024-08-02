@@ -50,6 +50,7 @@ class BookController extends Controller
         ]);
 
          $book = Book::create([
+             'user_id' => auth()->id(),
              'title' => request('title'),
              'author' => request('author'),
              'price' => request('price'),
@@ -58,9 +59,9 @@ class BookController extends Controller
              'isbn' => request('isbn'),
          ]);
 
-        Mail::to($book->user)->queue(
-            new BookAdded($book)
-        );
+        // Send the email
+
+        Mail::to('mejba.13@gmail.com')->send(new BookAdded($book));
 
          return redirect('/books');
 

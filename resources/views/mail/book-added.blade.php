@@ -48,7 +48,7 @@
 </head>
 <body>
 <div class="container">
-    <h2></h2>
+    <h2>{{ $book->title }}</h2>
     <p>
         Congrats! Your Book is now live on our website.
     </p>
