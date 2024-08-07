@@ -30,7 +30,7 @@
             <div class="lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 pt-20 lg:px-8">
                 <div class="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
                     <h1 class="text-2xl mb-5 font-bold tracking-tight text-gray-900 sm:text-3xl">{{ $book->title }}</h1>
-                    <img src="{!! Vite::asset('/resources/images/default-book-cover.jpg')  !!}" alt="{{ $book->title }}" class="h-full w-full object-cover object-center">
+                    <img src="{{ asset('storage/' . $book->book_cover_image) }}" alt="{{ $book->title }}" class="h-full w-full object-cover object-center">
                 </div>
                 <!-- Options -->
                 <div class="mt-20 lg:row-span-3 lg:mt-0">
