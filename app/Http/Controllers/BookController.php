@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Mail\BookAdded;
+use App\Mail\Bookupdated;
 use App\Models\Book;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -21,6 +22,7 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::latest()->Paginate(8);
+
         return view('books.index', [
             'books' => $books,
         ]);
@@ -50,9 +52,6 @@ class BookController extends Controller
             'price' => 'required|numeric',
             'published_date' => 'required|date',
             'isbn' => 'required|string',
-        ]);
-
-        $bookAttachmentFile = $request->validate([
             'book_cover_image' => ['required', File::types('png','jpg', 'webp')]
         ]);
 
@@ -99,25 +98,38 @@ class BookController extends Controller
      */
     public function update(Book $book)
     {
-        request()->validate([
+        // Validate the request data
+
+        $validatedData = request()->validate([
             'title' => 'required',
             'author' => 'required',
-            'price' =>  ['required', 'numeric'],
-            'book_cover_image' => 'required',
+            'price' => ['required', 'numeric'],
+            'book_cover_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Optional image validation
             'published_date' => 'required',
             'isbn' => 'required',
         ]);
 
-        $book->update([
-            'title' => request('title'),
-            'author' => request('author'),
-            'price' => request('price'),
-            'book_cover_image' => request('book_cover_image'),
-            'published_date' => request('published_date'),
-            'isbn' => request('isbn'),
-        ]);
+        // Handle file upload if it exists
 
-        return redirect('/books/'.$book->id);
+        if (request()->hasFile('book_cover_image')) {
+            // Store the uploaded file and get its path
+            $attachmentPath = request()->file('book_cover_image')->store('book_cover_images', 'public');
+
+            // Update the book cover image path
+            $validatedData['book_cover_image'] = $attachmentPath;
+        }
+
+        // Update the book record with validated data
+
+        $book->update($validatedData);
+
+       // Send the email
+
+        Mail::to('mejba.13@gmail.com')->send(new Bookupdated($book));
+
+        // Redirect to the updated book's page
+
+        return redirect('/books/'.$book->id)->with('success', 'Book updated successfully!');
 
     }
 

@@ -7,27 +7,29 @@
         <div class="mx-auto max-w-2xl text-center">
             <x-page-heading>Edit Book</x-page-heading>
         </div>
-        <x-forms.form action="/books/{{ $book->id }}" method="POST">
+
+        <x-forms.form action="/books/{{ $book->id }}" method="POST" enctype="multipart/form-data">
             <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                 <x-forms.input label="Title" type="text" value="{{ $book->title }}" name="title" placeholder="Book Title" />
                 <x-forms.input label="Author" type="text" value="{{ $book->author }}" name="author" placeholder="Author" />
                 <x-forms.input label="Price" type="text" value="{{ $book->price }}" name="price" placeholder="Price" />
-                <x-forms.input label="Book Cover Image" value="{{ $book->book_cover_image }}" type="text"  name="book_cover_image" placeholder="Book Cover Image" />
+                <x-forms.input label="Book Cover Image" type="file"  name="book_cover_image" placeholder="Book Cover Image" />
+                <img src="{{ asset($book->book_cover_image) }}" alt="{{ $book->title }}">
                 <x-forms.input label="Published Date"  value="{{ $book->published_date }}" type="date" name="published_date" placeholder="Published Date" />
                 <x-forms.input label="ISBN" name="isbn" value="{{ $book->isbn }}" type="text" placeholder="isbn number" />
             </div>
-
            <div class="flex max-w-lg justify-center gap-6">
                <x-forms.button>Book update</x-forms.button>
                <button form="delete-form" class="text-red-500 text-sm font-bold">Delete</button>
            </div>
-
         </x-forms.form>
     </div>
 
-    <form method="POST" action="/books/{{ $book->id }}" id="delete-form" class="hidden">
-        @csrf
-        @method("DELETE")
-    </form>
+    <div>
+        <form method="POST" action="/books/{{ $book->id }}" id="delete-form" class="hidden">
+            @csrf
+            @method("DELETE")
+        </form>
+    </div>
 
 </x-layout>
